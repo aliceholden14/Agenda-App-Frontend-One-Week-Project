@@ -35,6 +35,14 @@ function Form({ addLi, addToAgenda }) {
     } else return;
   }
 
+  function clearForm() {
+    setTitle("");
+    setDescription("");
+    setCategory("Code");
+    setOnAgenda(false);
+    setPriority(1);
+  }
+
   function getTimestamp() {
     let today = new Date();
     let date =
@@ -47,22 +55,21 @@ function Form({ addLi, addToAgenda }) {
       today.getHours() +
       ":" +
       today.getMinutes();
-    console.log(date);
     return setDateTime(date);
   }
 
   return (
-    <div>
+    <div id="inputForm">
       <h3>Make a new note:</h3>
-      <label for="title">Title:</label>
-      <input
-        id="title"
-        type="text"
-        name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <div className="dropdowns">
+      <div id="topLineForm">
+        <label for="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <label for="category">Category:</label>
         <select
           id="category"
@@ -87,33 +94,39 @@ function Form({ addLi, addToAgenda }) {
           <option value="3">3. Low</option>
         </select>
       </div>
-      <label for="description">Description:</label>
-      <input
-        id="description"
-        type="text"
-        value={description}
-        name="description"
-        placeholder="Write a more detailed description of your note/query..."
-        style={{ height: "120px", width: "200px" }}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <input
-        id="checkbox"
-        type="checkbox"
-        value={onAgenda}
-        name="checkbox"
-        onChange={() => setOnAgenda(!onAgenda)}
-      />
-      <label for="checkbox">Add to your agenda.</label>
-      <button
-        onClick={() => {
-          addLi(formEntry);
-          isAgendaClicked();
-          getTimestamp();
-        }}
-      >
-        Submit
-      </button>
+      <div id="descriptionBox">
+        <label for="description">Description:</label>
+        <input
+          id="description"
+          type="text"
+          value={description}
+          name="description"
+          placeholder="Write a more detailed description of your note/query..."
+          style={{ height: "120px", width: "200px" }}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
+      <div id="lastLineForm">
+        <input
+          id="checkbox"
+          type="checkbox"
+          value={onAgenda}
+          name="checkbox"
+          checked={onAgenda}
+          onChange={() => setOnAgenda(!onAgenda)}
+        />
+        <label for="checkbox">Add to your agenda.</label>
+        <button
+          onClick={() => {
+            addLi(formEntry);
+            isAgendaClicked();
+            getTimestamp();
+            clearForm();
+          }}
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 }
