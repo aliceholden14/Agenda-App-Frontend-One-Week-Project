@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 
+let today = new Date();
+let date =
+  today.getDate() +
+  "-" +
+  (today.getMonth() + 1) +
+  "-" +
+  today.getFullYear() +
+  " " +
+  today.getHours() +
+  ":" +
+  today.getMinutes();
+
 function Form({ addLi, addToAgenda }) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Code");
   const [priority, setPriority] = useState(1);
   const [description, setDescription] = useState("");
   const [onAgenda, setOnAgenda] = useState(false);
+  const [dateTime, setDateTime] = useState(date);
 
   const formEntry = {
     title: title,
@@ -13,12 +26,29 @@ function Form({ addLi, addToAgenda }) {
     priority: priority,
     description: description,
     onAgenda: onAgenda,
+    dateTime: dateTime,
   };
 
   function isAgendaClicked() {
     if (formEntry.onAgenda === true) {
       return addToAgenda(formEntry);
     } else return;
+  }
+
+  function getTimestamp() {
+    let today = new Date();
+    let date =
+      today.getDate() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getFullYear() +
+      " " +
+      today.getHours() +
+      ":" +
+      today.getMinutes();
+    console.log(date);
+    return setDateTime(date);
   }
 
   return (
@@ -79,6 +109,7 @@ function Form({ addLi, addToAgenda }) {
         onClick={() => {
           addLi(formEntry);
           isAgendaClicked();
+          getTimestamp();
         }}
       >
         Submit

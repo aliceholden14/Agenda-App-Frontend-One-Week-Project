@@ -27,7 +27,7 @@ function App() {
   return (
     <div>
       <Form addLi={addLi} addToAgenda={addToAgenda} />
-      <NoteList notes={notes} deleteLi={deleteLi} />
+      <NoteList notes={notes} deleteLi={deleteLi} addToAgenda={addToAgenda} />
       <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
     </div>
   );
