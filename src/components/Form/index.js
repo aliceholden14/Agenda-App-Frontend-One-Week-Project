@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Form({ addLi }) {
+function Form({ addLi, addToAgenda }) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Code");
   const [priority, setPriority] = useState(1);
@@ -14,6 +14,12 @@ function Form({ addLi }) {
     description: description,
     onAgenda: onAgenda,
   };
+
+  function isAgendaClicked() {
+    if (formEntry.onAgenda === true) {
+      return addToAgenda(formEntry);
+    } else return;
+  }
 
   return (
     <div>
@@ -72,6 +78,7 @@ function Form({ addLi }) {
       <button
         onClick={() => {
           addLi(formEntry);
+          isAgendaClicked();
         }}
       >
         Submit

@@ -1,7 +1,7 @@
 import React from "react";
 import Note from "../Note/index";
 
-function List({ notes, deleteLi }) {
+function NoteList({ notes, deleteLi }) {
   return (
     <ul>
       {notes.map((item, index) => {
@@ -12,4 +12,4 @@ function List({ notes, deleteLi }) {
   );
 }
 
-export default List;
+export default NoteList;
