@@ -58,11 +58,15 @@ function App() {
   }
 
   return (
-    <div>
+    <div id="main">
       <Form addLi={addLi} addToAgenda={addToAgenda} />
-      <NoteList notes={notes} deleteLi={deleteLi} addToAgenda={addToAgenda} />
-      <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
+
+      <div id="noteAgenda">
+        <NoteList notes={notes} deleteLi={deleteLi} addToAgenda={addToAgenda} />
+        <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
+      </div>
       <button onClick={() => getApiData()}>TEST BUTTON</button>
+
     </div>
   );
 }
