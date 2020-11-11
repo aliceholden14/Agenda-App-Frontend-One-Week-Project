@@ -18,7 +18,7 @@ function Note({ idx, text, deleteLi, addToAgenda }) {
       </button>
       <button
         onClick={() => {
-          return addToAgenda(text);
+          return addToAgenda(idx);
         }}
       >
         +

@@ -22,19 +22,16 @@ function App() {
 
   // Build agenda list
   function buildAgenda(mappedData) {
-    //console.log(mappedData);
     const agendaList = [];
     for (let i = 0; i < mappedData.length; i++) {
       if (mappedData[i].onAgenda === true) {
         agendaList.push(mappedData[i]);
       }
     }
-    //console.log("Agenda List is:");
-    //console.log(agendaList);
     return agendaList;
   }
 
-  // Get all data from API
+  // Get all data from API and set states for Notes list and Agenda list
   async function getApiData() {
     const res = await fetch("http://localhost:5000/notes");
     const dataArray = await res.json();
@@ -42,7 +39,6 @@ function App() {
     setNotes(mappedData);
     const agendaList = buildAgenda(mappedData);
     setAgenda(agendaList);
-    //console.log(notes);
   }
 
   // Triggered everytime state changes
@@ -54,14 +50,12 @@ function App() {
   async function addLi(formEntry) {
     delete formEntry.dateTime;
     formEntry.userId = "student";
-    //console.log(formEntry);
     const postData = await fetch("http://localhost:5000/notes", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formEntry),
     });
     const result = await postData.json;
-    //console.log(result);
     setStateChange(!stateChange);
   }
 
@@ -71,27 +65,33 @@ function App() {
       method: "delete",
     });
     const deletedId = await res.json();
-    //console.log(deletedId);
     setStateChange(!stateChange);
   }
 
-  // TODO
-  function addToAgenda(formEntry) {
-    setAgenda([...agenda, formEntry]);
+  // Set onAgenda to true for note by ID
+  async function addToAgenda(id) {
+    const res = await fetch(`http://localhost:5000/notes/${id}`, {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ onAgenda: true }),
+    });
+    const addedId = await res.json();
+    console.log(addedId);
+    setStateChange(!stateChange);
   }
 
-  // TODO
+  // Set onAgenda to false for note by ID
   async function deleteFromAgenda(id) {
     const res = await fetch(`http://localhost:5000/notes/${id}`, {
-      method: "patch",
+      method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ onAgenda: false }),
     });
     const removedId = await res.json();
-    console.log(removedId);
     setStateChange(!stateChange);
   }
 
+  // Create React components
   return (
     <div id="main">
       <Form addLi={addLi} addToAgenda={addToAgenda} />
@@ -100,7 +100,6 @@ function App() {
         <NoteList notes={notes} deleteLi={deleteLi} addToAgenda={addToAgenda} />
         <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
       </div>
-      <button onClick={() => getApiData()}>TEST BUTTON</button>
     </div>
   );
 }

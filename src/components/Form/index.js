@@ -30,12 +30,6 @@ function Form({ addLi, addToAgenda }) {
     dateTime: dateTime,
   };
 
-  function isAgendaClicked() {
-    if (formEntry.onAgenda === true) {
-      return addToAgenda(formEntry);
-    } else return;
-  }
-
   function clearForm() {
     setTitle("");
     setDescription("");
@@ -130,7 +124,6 @@ function Form({ addLi, addToAgenda }) {
           id="submitButton"
           onClick={() => {
             addLi(formEntry);
-            isAgendaClicked();
             getTimestamp();
             clearForm();
           }}
