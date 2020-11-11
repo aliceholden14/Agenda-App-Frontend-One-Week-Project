@@ -6,7 +6,21 @@ import Agenda from "../Agenda/index";
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const [notesQuery, setNotesQuery] = useState({
+    start: null,
+    end: null,
+    priority: null,
+    category: null,
+    onAgenda: null,
+  });
   const [agenda, setAgenda] = useState([]);
+  const [agendaQuery, setAgendaQuery] = useState({
+    start: null,
+    end: null,
+    priority: null,
+    category: null,
+    onAgenda: null,
+  });
   const [stateChange, setStateChange] = useState(false);
 
   // Map received API data into a format suitable for React components
