@@ -84,7 +84,7 @@ function App() {
   async function deleteFromAgenda(id) {
     const res = await fetch(`http://localhost:5000/notes/${id}`, {
       method: "patch",
-      //headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ onAgenda: false }),
     });
     const removedId = await res.json();
