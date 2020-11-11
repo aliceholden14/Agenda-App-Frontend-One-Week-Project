@@ -74,10 +74,10 @@ function Agenda({ agenda, deleteFromAgenda }) {
       <div id="agendaList">
         <h1>Agenda:</h1>
         <ul>
-          {agenda.map((item, index) => {
+          {agenda.map((item) => {
             return (
               <AgendaNote
-                idx={index}
+                idx={item.id}
                 text={item}
                 deleteFromAgenda={deleteFromAgenda}
               />

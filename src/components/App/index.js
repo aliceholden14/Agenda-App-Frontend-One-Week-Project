@@ -22,15 +22,15 @@ function App() {
 
   // Build agenda list
   function buildAgenda(mappedData) {
-    console.log(mappedData);
+    //console.log(mappedData);
     const agendaList = [];
     for (let i = 0; i < mappedData.length; i++) {
       if (mappedData[i].onAgenda === true) {
         agendaList.push(mappedData[i]);
       }
     }
-    console.log("Agenda List is:");
-    console.log(agendaList);
+    //console.log("Agenda List is:");
+    //console.log(agendaList);
     return agendaList;
   }
 
@@ -81,8 +81,15 @@ function App() {
   }
 
   // TODO
-  function deleteFromAgenda(index) {
-    setAgenda([...agenda.slice(0, index), ...agenda.slice(index + 1)]);
+  async function deleteFromAgenda(id) {
+    const res = await fetch(`http://localhost:5000/notes/${id}`, {
+      method: "patch",
+      //headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ onAgenda: false }),
+    });
+    const removedId = await res.json();
+    console.log(removedId);
+    setStateChange(!stateChange);
   }
 
   return (
@@ -94,7 +101,6 @@ function App() {
         <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
       </div>
       <button onClick={() => getApiData()}>TEST BUTTON</button>
-
     </div>
   );
 }
