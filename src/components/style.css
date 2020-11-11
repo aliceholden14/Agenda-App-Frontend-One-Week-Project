@@ -1,6 +1,7 @@
 #noteAgenda {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 #inputForm {
@@ -10,6 +11,7 @@
   background: #c4c4c4;
   align-self: center;
   margin: auto;
+  border-radius: 5px;
 }
 #topLineForm {
   margin: 20px;
@@ -57,7 +59,7 @@
   position: left;
   margin-top: 20px;
   margin-left: 30px;
-  width: 604px;
+  width: 825px;
   height: 577px;
 }
 
@@ -68,15 +70,36 @@
 
 #agendaContainer {
   border-style: solid;
-  position: right;
   margin-top: 20px;
   margin-left: 30px;
   margin-right: 30px;
-  width: 604px;
+  width: 825px;
   height: 577px;
 }
 
 #filterAgenda {
   margin-top: 15px;
   text-align: center;
+}
+
+.padding {
+  margin-left: 10px;
+}
+
+.inputPadding {
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+h1 {
+  margin-left: 10px;
+}
+
+h3 {
+  text-align: center;
+  padding: 15px;
+}
+
+#noteList {
+  overflow-y: scroll;
 }

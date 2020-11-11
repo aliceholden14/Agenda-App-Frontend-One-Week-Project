@@ -21,8 +21,11 @@ function Agenda({ agenda, deleteFromAgenda }) {
           value={searchAgenda}
           onChange={(e) => setSearchAgenda(e.target.value)}
         />
-        <label for="category">Category:</label>
+        <label for="category" class="padding">
+          Category:
+        </label>
         <select
+          class="inputPadding"
           id="categoryAgenda"
           name="category"
           value={categoryFilterAgenda}
@@ -33,8 +36,11 @@ function Agenda({ agenda, deleteFromAgenda }) {
           <option value="Team Working">Team Working</option>
           <option value="Misc.">Miscellaneous</option>
         </select>
-        <label for="priority">Priority:</label>
+        <label for="priority" class="padding">
+          Priority:
+        </label>
         <select
+          class="inputPadding"
           id="priorityAgenda"
           name="priority"
           value={priorityFilterAgenda}
@@ -45,8 +51,11 @@ function Agenda({ agenda, deleteFromAgenda }) {
           <option value="3">3. Low</option>
         </select>
         <br></br>
-        <label for="dateInput">Date Range:</label>
+        <label for="dateInput" class="padding">
+          Date Range:
+        </label>
         <input
+          class="inputPadding"
           type="date"
           id="startDateInputAgenda"
           name="dateInput"
@@ -54,14 +63,18 @@ function Agenda({ agenda, deleteFromAgenda }) {
           onChange={(e) => setStartDateAgenda(e.target.value)}
         />
         <input
+          class="inputPadding"
           type="date"
           id="endDateInputAgenda"
           name="dateInput"
           value={endDateAgenda}
           onChange={(e) => setEndDateAgenda(e.target.value)}
         />
-        <label for="sortBy">Sort By:</label>
+        <label for="sortBy" class="padding">
+          Sort By:
+        </label>
         <select
+          class="inputPadding"
           id="sortBy"
           name="sortBy"
           value={sortValue}
