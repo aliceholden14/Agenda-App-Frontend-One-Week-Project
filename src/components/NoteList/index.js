@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Note from "../Note/index";
+import "../style.css";
 
 function NoteList({ notes, deleteLi, addToAgenda }) {
   const [searchText, setSearchText] = useState();

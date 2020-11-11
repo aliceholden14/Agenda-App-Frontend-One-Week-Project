@@ -1,4 +1,5 @@
 import React from "react";
+import "../style.css";
 
 function AgendaNote({ idx, text, deleteFromAgenda }) {
   console.log(text);
