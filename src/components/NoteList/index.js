@@ -13,13 +13,17 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
     <div id="notesContainer">
       <div id="filterNotes">
         <input
+          class="padding"
           placeholder="search"
           type="text"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <label for="category">Category:</label>
+        <label for="category" class="padding">
+          Category:
+        </label>
         <select
+          class="inputPadding"
           id="category"
           name="category"
           value={categoryFilter}
@@ -30,8 +34,11 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
           <option value="Team Working">Team Working</option>
           <option value="Misc.">Miscellaneous</option>
         </select>
-        <label for="priority">Priority:</label>
+        <label for="priority" class="padding">
+          Priority:
+        </label>
         <select
+          class="inputPadding"
           id="priority"
           name="priority"
           value={priorityFilter}
@@ -42,8 +49,11 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
           <option value="3">3. Low</option>
         </select>
         <br></br>
-        <label for="dateInput">Date Range:</label>
+        <label for="dateInput" class="padding">
+          Date Range:
+        </label>
         <input
+          class="inputPadding"
           type="date"
           id="startDateInput"
           name="dateInput"
@@ -51,6 +61,7 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
+          class="inputPadding"
           type="date"
           id="endDateInput"
           name="dateInput"

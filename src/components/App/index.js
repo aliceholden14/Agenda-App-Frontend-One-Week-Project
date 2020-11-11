@@ -94,7 +94,6 @@ function App() {
         <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
       </div>
       <button onClick={() => getApiData()}>TEST BUTTON</button>
-
     </div>
   );
 }
