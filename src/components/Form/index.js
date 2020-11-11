@@ -113,18 +113,19 @@ function Form({ addLi, addToAgenda }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <div id="lastLineForm">
-        <span id="checkboxForm">
-          <input
-            id="checkbox"
-            type="checkbox"
-            value={onAgenda}
-            name="checkbox"
-            checked={onAgenda}
-            onChange={() => setOnAgenda(!onAgenda)}
-          />
-          <label for="checkbox">Add to your agenda.</label>
-        </span>
+      {/* <div id="lastLineForm"> */}
+      <span id="checkboxForm">
+        <input
+          id="checkbox"
+          type="checkbox"
+          value={onAgenda}
+          name="checkbox"
+          checked={onAgenda}
+          onChange={() => setOnAgenda(!onAgenda)}
+        />
+        <label for="checkbox">Add to your agenda.</label>
+      </span>
+      <span id="buttonSpan">
         <button
           id="submitButton"
           onClick={() => {
@@ -136,8 +137,9 @@ function Form({ addLi, addToAgenda }) {
         >
           Submit
         </button>
-      </div>
+      </span>
     </div>
+    // </div>
   );
 }
 
