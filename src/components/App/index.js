@@ -8,15 +8,8 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [agenda, setAgenda] = useState([]);
 
-  async function getApiData() {
-    const res = await fetch("http://localhost:5000/notes");
-    const dataArray = await res.json();
-    //console.log(dataArray.data.rows);
-    return dataArray.data.rows;
-  }
-
-  async function loadApiData() {
-    const dataArray = await getApiData();
+  function mapApiData(dataArray) {
+    console.log(dataArray);
     for (let i = 0; i < dataArray.length; i++) {
       dataArray[i].dateTime = dataArray[i]["date"];
       delete dataArray[i].date;
@@ -26,10 +19,17 @@ function App() {
     return dataArray;
   }
 
+  async function getApiData() {
+    const res = await fetch("http://localhost:5000/notes");
+    const dataArray = await res.json();
+
+    const mappedData = mapApiData(dataArray.data.rows);
+
+    setNotes(mappedData);
+  }
+
   useEffect(() => {
-    const data = loadApiData();
-    console.log(data);
-    setNotes([]);
+    getApiData();
   }, []);
 
   function addLi(formEntry) {
@@ -53,7 +53,7 @@ function App() {
       <Form addLi={addLi} addToAgenda={addToAgenda} />
       <NoteList notes={notes} deleteLi={deleteLi} addToAgenda={addToAgenda} />
       <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
-      <button onClick={() => loadApiData(getApiData())}>TEST BUTTON</button>
+      <button onClick={() => getApiData()}>TEST BUTTON</button>
     </div>
   );
 }
