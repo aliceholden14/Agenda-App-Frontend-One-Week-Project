@@ -13,6 +13,7 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
     <div id="notesContainer">
       <div id="filterNotes">
         <input
+          placeholder="search"
           type="text"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
@@ -40,6 +41,7 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
           <option value="2">2. Medium</option>
           <option value="3">3. Low</option>
         </select>
+        <br></br>
         <label for="dateInput">Date Range:</label>
         <input
           type="date"
