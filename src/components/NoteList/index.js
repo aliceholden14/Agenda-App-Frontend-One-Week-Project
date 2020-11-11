@@ -61,10 +61,10 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
       <div id="noteList">
         <h1>Note Stash:</h1>
         <ul>
-          {notes.map((item, index) => {
+          {notes.map((item) => {
             return (
               <Note
-                idx={index}
+                idx={item.id}
                 text={item}
                 deleteLi={deleteLi}
                 addToAgenda={addToAgenda}
