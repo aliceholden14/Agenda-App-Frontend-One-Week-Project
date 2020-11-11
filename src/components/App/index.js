@@ -9,6 +9,7 @@ function App() {
   const [agenda, setAgenda] = useState([]);
   const [stateChange, setStateChange] = useState(false);
 
+  // Map received API data into a format suitable for React components
   function mapApiData(dataArray) {
     for (let i = 0; i < dataArray.length; i++) {
       dataArray[i].dateTime = dataArray[i]["date"];
@@ -19,40 +20,67 @@ function App() {
     return dataArray;
   }
 
+  // Build agenda list
+  function buildAgenda(mappedData) {
+    console.log(mappedData);
+    const agendaList = [];
+    for (let i = 0; i < mappedData.length; i++) {
+      if (mappedData[i].onAgenda === true) {
+        agendaList.push(mappedData[i]);
+      }
+    }
+    console.log("Agenda List is:");
+    console.log(agendaList);
+    return agendaList;
+  }
+
+  // Get all data from API
   async function getApiData() {
     const res = await fetch("http://localhost:5000/notes");
     const dataArray = await res.json();
     const mappedData = mapApiData(dataArray.data.rows);
     setNotes(mappedData);
+    const agendaList = buildAgenda(mappedData);
+    setAgenda(agendaList);
+    //console.log(notes);
   }
 
+  // Triggered everytime state changes
   useEffect(() => {
     getApiData();
   }, [stateChange]);
 
+  // Post form data to API
   async function addLi(formEntry) {
-    //setNotes([...notes, formEntry]);
     delete formEntry.dateTime;
     formEntry.userId = "student";
-    console.log(formEntry);
+    //console.log(formEntry);
     const postData = await fetch("http://localhost:5000/notes", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formEntry),
     });
     const result = await postData.json;
-    console.log(result);
+    //console.log(result);
     setStateChange(!stateChange);
   }
 
-  function deleteLi(index) {
-    setNotes([...notes.slice(0, index), ...notes.slice(index + 1)]);
+  // Delete by ID from API
+  async function deleteLi(id) {
+    const res = await fetch(`http://localhost:5000/notes/${id}`, {
+      method: "delete",
+    });
+    const deletedId = await res.json();
+    //console.log(deletedId);
+    setStateChange(!stateChange);
   }
 
+  // TODO
   function addToAgenda(formEntry) {
     setAgenda([...agenda, formEntry]);
   }
 
+  // TODO
   function deleteFromAgenda(index) {
     setAgenda([...agenda.slice(0, index), ...agenda.slice(index + 1)]);
   }
