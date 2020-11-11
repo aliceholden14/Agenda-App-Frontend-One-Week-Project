@@ -7,9 +7,9 @@ import Agenda from "../Agenda/index";
 function App() {
   const [notes, setNotes] = useState([]);
   const [agenda, setAgenda] = useState([]);
+  const [stateChange, setStateChange] = useState(false);
 
   function mapApiData(dataArray) {
-    console.log(dataArray);
     for (let i = 0; i < dataArray.length; i++) {
       dataArray[i].dateTime = dataArray[i]["date"];
       delete dataArray[i].date;
@@ -22,18 +22,27 @@ function App() {
   async function getApiData() {
     const res = await fetch("http://localhost:5000/notes");
     const dataArray = await res.json();
-
     const mappedData = mapApiData(dataArray.data.rows);
-
     setNotes(mappedData);
   }
 
   useEffect(() => {
     getApiData();
-  }, []);
+  }, [stateChange]);
 
-  function addLi(formEntry) {
-    setNotes([...notes, formEntry]);
+  async function addLi(formEntry) {
+    //setNotes([...notes, formEntry]);
+    delete formEntry.dateTime;
+    formEntry.userId = "student";
+    console.log(formEntry);
+    const postData = await fetch("http://localhost:5000/notes", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formEntry),
+    });
+    const result = await postData.json;
+    console.log(result);
+    setStateChange(!stateChange);
   }
 
   function deleteLi(index) {

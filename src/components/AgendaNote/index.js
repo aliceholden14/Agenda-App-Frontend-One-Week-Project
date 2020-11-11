@@ -2,7 +2,6 @@ import React from "react";
 import "../style.css";
 
 function AgendaNote({ idx, text, deleteFromAgenda }) {
-  console.log(text);
   return (
     <li key={idx}>
       <h4>{text.category}</h4>
