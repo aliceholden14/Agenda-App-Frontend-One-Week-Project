@@ -1,0 +1,85 @@
+#checkboxForm {
+  text-align: center;
+}
+
+#inputForm {
+  position: absolute;
+  width: 671px;
+  height: 245px;
+
+  background: #c4c4c4;
+  align-self: center;
+}
+#topLineForm {
+  margin: 20px;
+  text-align: center;
+}
+
+#titleLabel {
+  margin: 15px;
+  text-align: center;
+}
+
+#priorityLabel {
+  margin: 15px;
+}
+
+#categoryLabel {
+  margin: 15px;
+}
+
+#descriptionBox {
+  text-align: center;
+}
+
+#submitButton {
+  position: absolute;
+  width: 86px;
+  height: 15px;
+
+  background: #d1f015;
+}
+
+/* Rectangle 1 */
+
+/* Rectangle 3 */
+
+position: absolute;
+width: 126px;
+height: 32px;
+
+background: #de3434;
+
+/* Rectangle 4 */
+
+position: absolute;
+width: 126px;
+height: 32px;
+
+background: #de3434;
+
+/* Rectangle 2 */
+
+position: absolute;
+width: 126px;
+height: 32px;
+
+background: #de3434;
+
+/* Rectangle 5 */
+
+position: absolute;
+width: 569px;
+height: 116px;
+
+background: #531bf1;
+
+/* Rectangle 6 */
+
+position: absolute;
+width: 24px;
+height: 22px;
+
+background: #16f3e6;
+
+/* Rectangle 7 */

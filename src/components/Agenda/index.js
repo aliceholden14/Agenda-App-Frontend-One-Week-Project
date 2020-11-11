@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AgendaNote from "../AgendaNote/index";
+import "../style.css";
 
 function Agenda({ agenda, deleteFromAgenda }) {
   const [searchAgenda, setSearchAgenda] = useState();
