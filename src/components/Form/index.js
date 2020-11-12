@@ -75,10 +75,12 @@ function Form({ addLi, addToAgenda }) {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="Technical/Code">Technical/Coding</option>
-            <option value="Industry">Industry/Real World</option>
-            <option value="Team Working">Team Working</option>
-            <option value="Misc.">Miscellaneous</option>
+            <option value="none">None</option>
+            <option value="javascript">JavaScript</option>
+            <option value="industry">Industry</option>
+            <option value="databases">Databases</option>
+            <option value="front-end">Front-End</option>
+            <option value="design patterns">Design Patterns</option>
           </select>
         </span>
         <span id="priorityLabel">

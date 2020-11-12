@@ -19,9 +19,38 @@ function App() {
     end: null,
     priority: null,
     category: null,
-    onAgenda: null,
+    onAgenda: true,
   });
   const [stateChange, setStateChange] = useState(false);
+
+  // Build API query string for GET method
+  function buildQuery(queryObject) {
+    let query = "?";
+    for (const key in queryObject) {
+      if (queryObject[key]) {
+        query += `${key}=${queryObject[key]}&`;
+      }
+    }
+    return query.slice(0, -1);
+  }
+
+  // Get query states from list components
+  function setQuery(list, queryObject) {
+    for (const key in queryObject) {
+      if (queryObject[key] === "all") {
+        queryObject[key] = null;
+      }
+    }
+    //console.log(queryObject);
+    //console.log(list);
+    if (list === "notes") {
+      setNotesQuery(queryObject);
+    } else if (list === "agenda") {
+      setAgendaQuery(queryObject);
+    }
+    //setNotesQuery(queryObject);
+    setStateChange(!stateChange);
+  }
 
   // Map received API data into a format suitable for React components
   function mapApiData(dataArray) {
@@ -34,30 +63,30 @@ function App() {
     return dataArray;
   }
 
-  // Build agenda list
-  function buildAgenda(mappedData) {
-    const agendaList = [];
-    for (let i = 0; i < mappedData.length; i++) {
-      if (mappedData[i].onAgenda === true) {
-        agendaList.push(mappedData[i]);
-      }
-    }
-    return agendaList;
-  }
-
   // Get all data from API and set states for Notes list and Agenda list
-  async function getApiData() {
-    const res = await fetch("http://localhost:5000/notes");
+  async function getNotesList() {
+    const res = await fetch(
+      "http://localhost:5000/notes" + buildQuery(notesQuery)
+    );
     const dataArray = await res.json();
     const mappedData = mapApiData(dataArray.data.rows);
     setNotes(mappedData);
-    const agendaList = buildAgenda(mappedData);
-    setAgenda(agendaList);
   }
 
-  // Triggered everytime state changes
+  // Get all data from API and set states for Notes list and Agenda list
+  async function getAgendaList() {
+    const res = await fetch(
+      "http://localhost:5000/notes" + buildQuery(agendaQuery)
+    );
+    const dataArray = await res.json();
+    const mappedData = mapApiData(dataArray.data.rows);
+    setAgenda(mappedData);
+  }
+
+  // useEffect triggered everytime state changes, a bit hacky right now as stateChange is just a boolean that is toggled
   useEffect(() => {
-    getApiData();
+    getNotesList();
+    getAgendaList();
   }, [stateChange]);
 
   // Post form data to API
@@ -90,7 +119,6 @@ function App() {
       body: JSON.stringify({ onAgenda: true }),
     });
     const addedId = await res.json();
-    console.log(addedId);
     setStateChange(!stateChange);
   }
 
@@ -111,8 +139,17 @@ function App() {
       <Form addLi={addLi} addToAgenda={addToAgenda} />
 
       <div id="noteAgenda">
-        <NoteList notes={notes} deleteLi={deleteLi} addToAgenda={addToAgenda} />
-        <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
+        <NoteList
+          notes={notes}
+          deleteLi={deleteLi}
+          addToAgenda={addToAgenda}
+          setQuery={setQuery}
+        />
+        <Agenda
+          agenda={agenda}
+          deleteFromAgenda={deleteFromAgenda}
+          setQuery={setQuery}
+        />
       </div>
     </div>
   );
