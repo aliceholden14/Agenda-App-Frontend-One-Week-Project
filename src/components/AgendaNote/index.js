@@ -10,7 +10,7 @@ function AgendaNote({ idx, text, deleteFromAgenda }) {
       </div>
       <div id="noteInfo">
         <div id="agnTitle">
-          <h3>{text.title}</h3>
+          <h4>{text.title}</h4>
         </div>
         <div id="agnDesc">
           <p>{text.description}</p>
@@ -18,6 +18,7 @@ function AgendaNote({ idx, text, deleteFromAgenda }) {
         <div id="agnFooter">
           <div id="agnButton">
             <button
+              id="agnButtonIcon"
               onClick={() => {
                 return deleteFromAgenda(idx);
               }}
@@ -26,7 +27,7 @@ function AgendaNote({ idx, text, deleteFromAgenda }) {
             </button>
           </div>
           <div id="agnDT">
-            <p>{text.dateTime}</p>
+            <p id="agnDTtext">{text.dateTime}</p>
           </div>
         </div>
       </div>
