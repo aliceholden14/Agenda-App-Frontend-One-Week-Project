@@ -14,14 +14,14 @@ function Note({ idx, text, deleteLi, addToAgenda }) {
           return deleteLi(idx);
         }}
       >
-        x
+        🗑️
       </button>
       <button
         onClick={() => {
           return addToAgenda(idx);
         }}
       >
-        +
+        ✅
       </button>
     </li>
   );
