@@ -29,47 +29,61 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
     <div id="agendaContainer">
       <h1>Agenda</h1>
       <div id="filterAgenda">
-        <input
-          placeholder="search"
-          type="text"
-          value={searchAgenda}
-          onChange={(e) => setSearchAgenda(e.target.value)}
-        />
-        <label for="category" class="padding">
-          Category:
-        </label>
-        <select
-          class="inputPadding"
-          id="categoryAgenda"
-          name="category"
-          value={categoryFilterAgenda}
-          onChange={(e) => setCategoryFilterAgenda(e.target.value)}
-        >
-          <option value="all">All</option>
-          <option value="javascript">JavaScript</option>
-          <option value="industry">Industry</option>
-          <option value="databases">Databases</option>
-          <option value="front-end">Front-End</option>
-          <option value="design patterns">Design Patterns</option>
-        </select>
-        <label for="priority" class="padding">
-          Priority:
-        </label>
-        <select
-          class="inputPadding"
-          id="priorityAgenda"
-          name="priority"
-          value={priorityFilterAgenda}
-          onChange={(e) => setPriorityFilterAgenda(e.target.value)}
-        >
-          <option value="all">All</option>
-          <option value="1">1. High</option>
-          <option value="2">2. Medium</option>
-          <option value="3">3. Low</option>
-        </select>
-        <br></br>
+        <div className="dropDowns">
+          <input
+            placeholder="Search agenda..."
+            type="text"
+            value={searchAgenda}
+            onChange={(e) => setSearchAgenda(e.target.value)}
+          />
+          <select
+            class="inputPadding"
+            id="categoryAgenda"
+            name="category"
+            value={categoryFilterAgenda}
+            onChange={(e) => setCategoryFilterAgenda(e.target.value)}
+          >
+            <option value="" disabled selected hidden>
+              Choose Category...
+            </option>
+            <option value="all">All</option>
+            <option value="javascript">JavaScript</option>
+            <option value="industry">Industry</option>
+            <option value="databases">Databases</option>
+            <option value="front-end">Front-End</option>
+            <option value="design patterns">Design Patterns</option>
+          </select>
+          <select
+            class="inputPadding"
+            id="priorityAgenda"
+            name="priority"
+            value={priorityFilterAgenda}
+            onChange={(e) => setPriorityFilterAgenda(e.target.value)}
+          >
+            <option value="" disabled selected hidden>
+              Choose Priority...
+            </option>
+            <option value="all">All</option>
+            <option value="1">1. High</option>
+            <option value="2">2. Medium</option>
+            <option value="3">3. Low</option>
+          </select>
+          <select
+            class="inputPadding"
+            id="sortBy"
+            name="sortBy"
+            value={sortValue}
+            onChange={(e) => setSortValue(e.target.value)}
+          >
+            <option value="" disabled selected hidden>
+              Sort by...
+            </option>
+            <option value="Ascending">Newest Entries</option>
+            <option value="Descending">Oldest Entries</option>
+          </select>
+        </div>
         <label for="dateInput" class="padding">
-          Date Range:
+          Filter By Date:
         </label>
         <input
           class="inputPadding"
@@ -87,19 +101,6 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
           value={endDateAgenda}
           onChange={(e) => setEndDateAgenda(e.target.value)}
         />
-        <label for="sortBy" class="padding">
-          Sort By:
-        </label>
-        <select
-          class="inputPadding"
-          id="sortBy"
-          name="sortBy"
-          value={sortValue}
-          onChange={(e) => setSortValue(e.target.value)}
-        >
-          <option value="Ascending">Newest Entries</option>
-          <option value="Descending">Oldest Entries</option>
-        </select>
       </div>
       <div id="agendaList">
         <ul>

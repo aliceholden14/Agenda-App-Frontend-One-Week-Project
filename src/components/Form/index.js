@@ -56,26 +56,27 @@ function Form({ addLi, addToAgenda }) {
   return (
     <div id="inputForm">
       <h3>Create a note</h3>
-
       <div id="topLineForm">
         <span id="titleLabel">
-          <label for="title">Title:</label>
           <input
             id="title"
             type="text"
             name="title"
+            placeholder="Enter your title..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </span>
         <span id="categoryLabel">
-          <label for="category">Category:</label>
           <select
             id="category"
             name="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
+            <option value="" selected hidden>
+              Choose Category...
+            </option>
             <option value="none">None</option>
             <option value="javascript">JavaScript</option>
             <option value="industry">Industry</option>
@@ -85,13 +86,15 @@ function Form({ addLi, addToAgenda }) {
           </select>
         </span>
         <span id="priorityLabel">
-          <label for="priority">Priority:</label>
           <select
             id="priority"
             name="priority"
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
           >
+            <option value="" selected hidden>
+              Choose Priority...
+            </option>
             <option value="1">1. High</option>
             <option value="2">2. Medium</option>
             <option value="3">3. Low</option>
