@@ -3,26 +3,42 @@ import "../style.css";
 
 function Note({ idx, text, deleteLi, addToAgenda }) {
   return (
-    <li key={idx}>
-      <p id="category">{text.category}</p>
-      <p id="priority">{text.priority}</p>
-      <p id="title">{text.title}</p>
-      <p id="description">{text.description}</p>
-      <p id="dateTime">{text.dateTime}</p>
-      <button
-        onClick={() => {
-          return deleteLi(idx);
-        }}
-      >
-        🗑️
-      </button>
-      <button
-        onClick={() => {
-          return addToAgenda(idx);
-        }}
-      >
-        ➡️
-      </button>
+    <li key={idx} id="noteItem">
+      <div id="noteHeader">
+        <h4 id="title">{text.title}</h4>
+      </div>
+      <div id="noteDesc">
+        <p id="description">{text.description}</p>
+      </div>
+
+      <div id="notePrig">
+        <p id="category">{text.category}</p>
+        <p id="priority">{text.priority}</p>
+      </div>
+      <div id="noteFooter">
+        <div id="noteDeleteButton">
+          <button
+            onClick={() => {
+              return deleteLi(idx);
+            }}
+          >
+            🗑️
+          </button>
+        </div>
+        <div id="noteTD">
+          <p id="dateTime">{text.dateTime}</p>
+        </div>
+
+        <div id="noteAddButton">
+          <button
+            onClick={() => {
+              return addToAgenda(idx);
+            }}
+          >
+            ➡️
+          </button>
+        </div>
+      </div>
     </li>
   );
 }

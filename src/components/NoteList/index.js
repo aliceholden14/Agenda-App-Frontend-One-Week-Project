@@ -109,7 +109,7 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
         />
       </div>
       <div id="noteList">
-        <ul>
+        <ul id="noteUL">
           {notes.map((item) => {
             return (
               <Note

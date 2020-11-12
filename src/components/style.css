@@ -220,35 +220,43 @@ h3 {
 
 /* /////////////////////////////////Agenda */
 ul {
-  padding-left: 0px;
+  padding-left: 5px;
 }
 
 #agendaItem {
-  border-style: solid;
+  /* border-style: solid;
+  border-color: orange; */
   list-style-type: none;
   list-style-position: inside;
   margin-left: 5px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
   margin-bottom: 5px;
   padding: 5px;
-  border-color: orange;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background: rgba(255, 255, 255, 0.38);
+  border-radius: 10px;
 }
 
 #noteInfo {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   justify-content: center;
-  border-style: solid;
-  border-color: red;
+  /* border-style: solid;
+  border-color: red; */
+  display: inline;
+  width: 100%;
+  padding: 5px;
+  background: rgba(21, 0, 215, 0.146);
+  border-radius: 10px;
+  margin-left: 5px;
 }
 
 #agnFooter {
   display: flex;
   flex-direction: row;
-  border-style: solid;
+  /* border-style: solid; */
   justify-content: space-between;
   height: 35px;
   vertical-align: auto;
@@ -257,7 +265,13 @@ ul {
 #agnButton {
   display: flex;
   flex-direction: column;
-  justify-content: left;
+  justify-content: center;
+}
+
+#agnButtonIcon {
+  /* font-size: 20px; */
+  /* padding: 0px;
+  border: none; */
 }
 
 #agnDT {
@@ -267,17 +281,103 @@ ul {
   padding: 0;
 }
 
+#agnDTtext {
+  font-size: 10px;
+}
+
 #priegory {
-  border-style: solid;
-  border-color: yellow;
+  /* border-style: solid;
+  border-color: yellow; */
+  display: inline;
+  width: 120px;
+  text-align: center;
+  background: rgba(21, 0, 215, 0.146);
+  border-radius: 10px;
 }
 
 #agnTitle {
-  border-style: solid;
-  border-color: brown;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border-style: solid;
+  border-color: brown; */
+  height: 30px;
+  text-align: center;
+  background: rgba(21, 0, 215, 0.146);
+  border-radius: 5px;
 }
 
 #agnDesc {
-  border-style: solid;
-  border-color: cyan;
+  display: flex;
+  flex-direction: column;
+  vertical-align: text-top;
+  padding-top: 0;
+  /* border-style: solid;
+  border-color: cyan; */
+}
+
+#noteItem {
+  list-style-type: none;
+  list-style-position: inside;
+  margin-left: 5px;
+  /* margin-right: 5px; */
+  margin-bottom: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.38);
+  border-radius: 10px;
+  width: 206px;
+}
+
+#noteUL {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#noteHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border-style: solid;
+  border-color: brown; */
+  height: 30px;
+  text-align: center;
+  background: rgba(21, 0, 215, 0.23);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+#noteFooter {
+  display: flex;
+  flex-direction: row;
+  /* border-style: solid; */
+  justify-content: space-between;
+  height: 35px;
+  vertical-align: auto;
+  background: rgba(255, 255, 255, 0.38);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#dateTime {
+  font-size: 10px;
+}
+
+#notePrig {
+  display: flex;
+  flex-direction: row;
+  /* border-style: solid; */
+  height: 35px;
+  vertical-align: auto;
+  justify-content: space-evenly;
+  padding-bottom: 5px;
+}
+
+#noteDesc {
+  height: 150px;
+  padding: 10px;
+  text-align: center;
 }
