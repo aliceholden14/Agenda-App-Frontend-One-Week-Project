@@ -31,12 +31,22 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
       <div id="filterAgenda">
         <div className="dropDowns">
           <input
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
             placeholder="Search agenda..."
             type="text"
             value={searchAgenda}
             onChange={(e) => setSearchAgenda(e.target.value)}
           />
           <select
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
             class="inputPadding"
             id="categoryAgenda"
             name="category"
@@ -54,6 +64,11 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
             <option value="design patterns">Design Patterns</option>
           </select>
           <select
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
             class="inputPadding"
             id="priorityAgenda"
             name="priority"
@@ -69,6 +84,11 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
             <option value="3">3. Low</option>
           </select>
           <select
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
             class="inputPadding"
             id="sortBy"
             name="sortBy"
@@ -86,6 +106,11 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
           Filter By Date:
         </label>
         <input
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.3)",
+            borderRadius: "7px",
+            outline: "none",
+          }}
           class="inputPadding"
           type="date"
           id="startDateInputAgenda"
@@ -94,6 +119,11 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
           onChange={(e) => setStartDateAgenda(e.target.value)}
         />
         <input
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.3)",
+            borderRadius: "7px",
+            outline: "none",
+          }}
           class="inputPadding"
           type="date"
           id="endDateInputAgenda"

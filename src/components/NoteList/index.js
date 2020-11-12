@@ -24,6 +24,11 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
       <div id="filterNotes">
         <div className="dropDowns">
           <input
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
             class="padding"
             placeholder="Search notes..."
             type="text"
@@ -31,6 +36,11 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
             onChange={(e) => setSearchText(e.target.value)}
           />
           <select
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
             class="inputPadding"
             id="category"
             name="category"
@@ -48,6 +58,11 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
             <option value="design patterns">Design Patterns</option>
           </select>
           <select
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
             class="inputPadding"
             id="priority"
             name="priority"
@@ -67,6 +82,11 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
           Filter By Date:
         </label>
         <input
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.3)",
+            borderRadius: "7px",
+            outline: "none",
+          }}
           class="inputPadding"
           type="date"
           id="startDateInput"
@@ -75,6 +95,11 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.3)",
+            borderRadius: "7px",
+            outline: "none",
+          }}
           class="inputPadding"
           type="date"
           id="endDateInput"
