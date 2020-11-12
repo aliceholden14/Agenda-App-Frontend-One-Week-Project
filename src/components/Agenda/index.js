@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AgendaNote from "../AgendaNote/index";
 import "../style.css";
 
-function Agenda({ agenda, deleteFromAgenda }) {
+function Agenda({ agenda, deleteFromAgenda, setQuery }) {
   const [searchAgenda, setSearchAgenda] = useState();
-  const [categoryFilterAgenda, setCategoryFilterAgenda] = useState(
-    "Technical/Code"
-  );
-  const [priorityFilterAgenda, setPriorityFilterAgenda] = useState(1);
-  const [startDateAgenda, setStartDateAgenda] = useState();
-  const [endDateAgenda, setEndDateAgenda] = useState();
+  const [categoryFilterAgenda, setCategoryFilterAgenda] = useState(null);
+  const [priorityFilterAgenda, setPriorityFilterAgenda] = useState(null);
+  const [startDateAgenda, setStartDateAgenda] = useState(null);
+  const [endDateAgenda, setEndDateAgenda] = useState(null);
   const [sortValue, setSortValue] = useState();
+
+  useEffect(() => {
+    setQuery("agenda", {
+      start: startDateAgenda,
+      end: endDateAgenda,
+      priority: priorityFilterAgenda,
+      category: categoryFilterAgenda,
+      onAgenda: true,
+    });
+  }, [
+    categoryFilterAgenda,
+    priorityFilterAgenda,
+    startDateAgenda,
+    endDateAgenda,
+  ]);
 
   return (
     <div id="agendaContainer">
@@ -31,10 +44,12 @@ function Agenda({ agenda, deleteFromAgenda }) {
           value={categoryFilterAgenda}
           onChange={(e) => setCategoryFilterAgenda(e.target.value)}
         >
-          <option value="Technical/Code">Technical/Coding</option>
-          <option value="Industry">Industry/Real World</option>
-          <option value="Team Working">Team Working</option>
-          <option value="Misc.">Miscellaneous</option>
+          <option value="all">All</option>
+          <option value="javascript">JavaScript</option>
+          <option value="industry">Industry</option>
+          <option value="databases">Databases</option>
+          <option value="front-end">Front-End</option>
+          <option value="design patterns">Design Patterns</option>
         </select>
         <label for="priority" class="padding">
           Priority:
@@ -46,6 +61,7 @@ function Agenda({ agenda, deleteFromAgenda }) {
           value={priorityFilterAgenda}
           onChange={(e) => setPriorityFilterAgenda(e.target.value)}
         >
+          <option value="all">All</option>
           <option value="1">1. High</option>
           <option value="2">2. Medium</option>
           <option value="3">3. Low</option>

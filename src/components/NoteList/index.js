@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Note from "../Note/index";
 import "../style.css";
 
-function NoteList({ notes, deleteLi, addToAgenda }) {
+function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
   const [searchText, setSearchText] = useState();
-  const [categoryFilter, setCategoryFilter] = useState("Technical/Code");
-  const [priorityFilter, setPriorityFilter] = useState(1);
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [categoryFilter, setCategoryFilter] = useState(null);
+  const [priorityFilter, setPriorityFilter] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  useEffect(() => {
+    setQuery("notes", {
+      start: startDate,
+      end: endDate,
+      priority: priorityFilter,
+      category: categoryFilter,
+    });
+  }, [categoryFilter, priorityFilter, startDate, endDate]);
 
   return (
     <div id="notesContainer">
@@ -29,10 +38,12 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
         >
-          <option value="Technical/Code">Technical/Coding</option>
-          <option value="Industry">Industry/Real World</option>
-          <option value="Team Working">Team Working</option>
-          <option value="Misc.">Miscellaneous</option>
+          <option value="all">All</option>
+          <option value="javascript">JavaScript</option>
+          <option value="industry">Industry</option>
+          <option value="databases">Databases</option>
+          <option value="front-end">Front-End</option>
+          <option value="design patterns">Design Patterns</option>
         </select>
         <label for="priority" class="padding">
           Priority:
@@ -44,6 +55,7 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
           value={priorityFilter}
           onChange={(e) => setPriorityFilter(e.target.value)}
         >
+          <option value="all">All</option>
           <option value="1">1. High</option>
           <option value="2">2. Medium</option>
           <option value="3">3. Low</option>

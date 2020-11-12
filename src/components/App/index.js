@@ -34,6 +34,24 @@ function App() {
     return query.slice(0, -1);
   }
 
+  // Get query states from list components
+  function setQuery(list, queryObject) {
+    for (const key in queryObject) {
+      if (queryObject[key] === "all") {
+        queryObject[key] = null;
+      }
+    }
+    //console.log(queryObject);
+    //console.log(list);
+    if (list === "notes") {
+      setNotesQuery(queryObject);
+    } else if (list === "agenda") {
+      setAgendaQuery(queryObject);
+    }
+    //setNotesQuery(queryObject);
+    setStateChange(!stateChange);
+  }
+
   // Map received API data into a format suitable for React components
   function mapApiData(dataArray) {
     for (let i = 0; i < dataArray.length; i++) {
@@ -43,17 +61,6 @@ function App() {
       delete dataArray[i].on_agenda;
     }
     return dataArray;
-  }
-
-  // Build agenda list
-  function buildAgenda(mappedData) {
-    const agendaList = [];
-    for (let i = 0; i < mappedData.length; i++) {
-      if (mappedData[i].onAgenda === true) {
-        agendaList.push(mappedData[i]);
-      }
-    }
-    return agendaList;
   }
 
   // Get all data from API and set states for Notes list and Agenda list
@@ -76,7 +83,7 @@ function App() {
     setAgenda(mappedData);
   }
 
-  // Triggered everytime state changes
+  // useEffect triggered everytime state changes, a bit hacky right now as stateChange is just a boolean that is toggled
   useEffect(() => {
     getNotesList();
     getAgendaList();
@@ -132,8 +139,17 @@ function App() {
       <Form addLi={addLi} addToAgenda={addToAgenda} />
 
       <div id="noteAgenda">
-        <NoteList notes={notes} deleteLi={deleteLi} addToAgenda={addToAgenda} />
-        <Agenda agenda={agenda} deleteFromAgenda={deleteFromAgenda} />
+        <NoteList
+          notes={notes}
+          deleteLi={deleteLi}
+          addToAgenda={addToAgenda}
+          setQuery={setQuery}
+        />
+        <Agenda
+          agenda={agenda}
+          deleteFromAgenda={deleteFromAgenda}
+          setQuery={setQuery}
+        />
       </div>
     </div>
   );
