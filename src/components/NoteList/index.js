@@ -11,6 +11,7 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
 
   return (
     <div id="notesContainer">
+      <h1>Note Stash</h1>
       <div id="filterNotes">
         <input
           class="padding"
@@ -70,7 +71,6 @@ function NoteList({ notes, deleteLi, addToAgenda }) {
         />
       </div>
       <div id="noteList">
-        <h1>Note Stash:</h1>
         <ul>
           {notes.map((item) => {
             return (
