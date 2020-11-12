@@ -55,7 +55,8 @@ function Form({ addLi, addToAgenda }) {
 
   return (
     <div id="inputForm">
-      <h3>Make a new note:</h3>
+      <h3>Create a note</h3>
+
       <div id="topLineForm">
         <span id="titleLabel">
           <label for="title">Title:</label>

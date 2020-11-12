@@ -27,6 +27,7 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
 
   return (
     <div id="agendaContainer">
+      <h1>Agenda</h1>
       <div id="filterAgenda">
         <input
           placeholder="search"
@@ -101,7 +102,6 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
         </select>
       </div>
       <div id="agendaList">
-        <h1>Agenda:</h1>
         <ul>
           {agenda.map((item) => {
             return (

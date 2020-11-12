@@ -4,11 +4,11 @@ import "../style.css";
 function Note({ idx, text, deleteLi, addToAgenda }) {
   return (
     <li key={idx}>
-      <h1>{text.category}</h1>
-      <h2>{text.priority}</h2>
-      <h3>{text.title}</h3>
-      <h4>{text.description}</h4>
-      <p>{text.dateTime}</p>
+      <p id="category">{text.category}</p>
+      <p id="priority">{text.priority}</p>
+      <p id="title">{text.title}</p>
+      <p id="description">{text.description}</p>
+      <p id="dateTime">{text.dateTime}</p>
       <button
         onClick={() => {
           return deleteLi(idx);
