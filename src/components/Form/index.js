@@ -99,16 +99,18 @@ function Form({ addLi, addToAgenda }) {
         </span>
       </div>
       <div id="descriptionBox">
-        <label for="description">Description:</label>
-        <input
+        <textarea
           id="description"
           type="text"
           value={description}
           name="description"
+          rows="7"
+          cols="55"
+          wrap="soft"
           placeholder="Write a more detailed description of your note/query..."
-          style={{ height: "120px", width: "600px" }}
+          // style={{ height: "120px", width: "600px" }}
           onChange={(e) => setDescription(e.target.value)}
-        />
+        ></textarea>
       </div>
       {/* <div id="lastLineForm"> */}
       <span id="checkboxForm">

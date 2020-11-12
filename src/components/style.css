@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Domine:wght@600&family=Fredoka+One&display=swap");
+
+#main {
+  padding: 5px;
+  background: linear-gradient(#9beece 0%, #6a34ea 100%);
+}
+
 #noteAgenda {
   display: flex;
   flex-direction: row;
@@ -36,6 +42,8 @@
 
 #descriptionBox {
   text-align: center;
+  resize: none !important;
+  overflow: auto;
 }
 
 #checkboxForm {
@@ -62,7 +70,7 @@
   position: left;
   margin-top: 20px;
   margin-left: 30px;
-  width: 825px;
+  width: 550px;
   height: 577px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.3);
@@ -77,7 +85,7 @@
   margin-top: 20px;
   margin-left: 30px;
   margin-right: 30px;
-  width: 825px;
+  width: 550px;
   height: 577px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.3);
@@ -113,6 +121,14 @@ h3 {
 }
 
 #noteList {
+  height: 380px;
+  width: 550px;
+  overflow-y: scroll;
+}
+
+#agendaList {
+  height: 350px;
+  width: 550px;
   overflow-y: scroll;
 }
 
