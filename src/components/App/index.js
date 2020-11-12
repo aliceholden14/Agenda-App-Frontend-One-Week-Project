@@ -140,12 +140,14 @@ function App() {
 
       <div id="noteAgenda">
         <NoteList
+          className="noteAgendaChild"
           notes={notes}
           deleteLi={deleteLi}
           addToAgenda={addToAgenda}
           setQuery={setQuery}
         />
         <Agenda
+          className="noteAgendaChild"
           agenda={agenda}
           deleteFromAgenda={deleteFromAgenda}
           setQuery={setQuery}
