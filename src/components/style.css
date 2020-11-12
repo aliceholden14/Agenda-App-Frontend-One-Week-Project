@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Domine:wght@600&family=Fredoka+One&display=swap");
 
-
 #main {
   padding: 5px;
   background: linear-gradient(#9beece 0%, #6a34ea 100%);
@@ -136,4 +135,68 @@ h3 {
 #main {
   padding: 5px;
   background: linear-gradient(#9beece 0%, #6a34ea 100%);
+}
+
+/* /////////////////////////////////Agenda */
+ul {
+  padding-left: 0px;
+}
+
+#agendaItem {
+  border-style: solid;
+  list-style-type: none;
+  list-style-position: inside;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-color: orange;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#noteInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-style: solid;
+  border-color: red;
+}
+
+#agnFooter {
+  display: flex;
+  flex-direction: row;
+  border-style: solid;
+  justify-content: space-between;
+  height: 35px;
+  vertical-align: auto;
+}
+
+#agnButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+#agnDT {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+}
+
+#priegory {
+  border-style: solid;
+  border-color: yellow;
+}
+
+#agnTitle {
+  border-style: solid;
+  border-color: brown;
+}
+
+#agnDesc {
+  border-style: solid;
+  border-color: cyan;
 }
