@@ -57,6 +57,7 @@ function App() {
     for (let i = 0; i < dataArray.length; i++) {
       dataArray[i].dateTime = dataArray[i]["date"];
       delete dataArray[i].date;
+      dataArray[i].dateTime = dataArray[i].dateTime.slice(0, 10);
       dataArray[i].onAgenda = dataArray[i]["on_agenda"];
       delete dataArray[i].on_agenda;
     }
