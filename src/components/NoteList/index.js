@@ -3,20 +3,23 @@ import Note from "../Note/index";
 import "../style.css";
 
 function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
-  const [searchText, setSearchText] = useState();
+  const [searchText, setSearchText] = useState(null);
   const [categoryFilter, setCategoryFilter] = useState(null);
   const [priorityFilter, setPriorityFilter] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [order, setOrder] = useState("descending");
 
   useEffect(() => {
     setQuery("notes", {
+      search: searchText,
       start: startDate,
       end: endDate,
       priority: priorityFilter,
       category: categoryFilter,
+      order: order,
     });
-  }, [categoryFilter, priorityFilter, startDate, endDate]);
+  }, [searchText, categoryFilter, priorityFilter, startDate, endDate, order]);
 
   return (
     <div id="notesContainer">
@@ -76,6 +79,24 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
             <option value="1">1. High</option>
             <option value="2">2. Medium</option>
             <option value="3">3. Low</option>
+          </select>
+          <select
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              borderRadius: "7px",
+              outline: "none",
+            }}
+            class="inputPadding"
+            id="sortBy"
+            name="sortBy"
+            value={order}
+            onChange={(e) => setOrder(e.target.value)}
+          >
+            <option value="" disabled selected hidden>
+              Sort by...
+            </option>
+            <option value="descending">Newest Entries</option>
+            <option value="ascending">Oldest Entries</option>
           </select>
         </div>
         <label for="dateInput" class="padding">
