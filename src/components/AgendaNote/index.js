@@ -23,7 +23,7 @@ function AgendaNote({ idx, text, deleteFromAgenda }) {
                 return deleteFromAgenda(idx);
               }}
             >
-              🚫
+              ❌
             </button>
           </div>
           <div id="agnDT">

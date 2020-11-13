@@ -39,7 +39,7 @@ function Note({ idx, text, deleteLi, addToAgenda }) {
               return addToAgenda(idx);
             }}
           >
-            ➡️
+            📌
           </button>
         </div>
       </div>
