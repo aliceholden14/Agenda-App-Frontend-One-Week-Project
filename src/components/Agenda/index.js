@@ -8,21 +8,25 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
   const [priorityFilterAgenda, setPriorityFilterAgenda] = useState(null);
   const [startDateAgenda, setStartDateAgenda] = useState(null);
   const [endDateAgenda, setEndDateAgenda] = useState(null);
-  const [sortValue, setSortValue] = useState();
+  const [agendaOrder, setAgendaOrder] = useState("descending");
 
   useEffect(() => {
     setQuery("agenda", {
+      search: searchAgenda,
       start: startDateAgenda,
       end: endDateAgenda,
       priority: priorityFilterAgenda,
       category: categoryFilterAgenda,
       onAgenda: true,
+      order: agendaOrder,
     });
   }, [
+    searchAgenda,
     categoryFilterAgenda,
     priorityFilterAgenda,
     startDateAgenda,
     endDateAgenda,
+    agendaOrder,
   ]);
 
   return (
@@ -90,16 +94,16 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
               outline: "none",
             }}
             class="inputPadding"
-            id="sortBy"
+            id="sortByAgenda"
             name="sortBy"
-            value={sortValue}
-            onChange={(e) => setSortValue(e.target.value)}
+            value={agendaOrder}
+            onChange={(e) => setAgendaOrder(e.target.value)}
           >
             <option value="" disabled selected hidden>
               Sort by...
             </option>
-            <option value="Ascending">Newest Entries</option>
-            <option value="Descending">Oldest Entries</option>
+            <option value="descending">Newest Entries</option>
+            <option value="ascending">Oldest Entries</option>
           </select>
         </div>
         <label for="dateInput" class="padding">

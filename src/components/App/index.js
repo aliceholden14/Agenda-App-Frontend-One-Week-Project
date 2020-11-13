@@ -41,8 +41,6 @@ function App() {
         queryObject[key] = null;
       }
     }
-    //console.log(queryObject);
-    //console.log(list);
     if (list === "notes") {
       setNotesQuery(queryObject);
     } else if (list === "agenda") {
@@ -55,16 +53,15 @@ function App() {
   // Map received API data into a format suitable for React components
   function mapApiData(dataArray) {
     for (let i = 0; i < dataArray.length; i++) {
-      dataArray[i].dateTime = dataArray[i]["date"];
+      dataArray[i].dateTime = dataArray[i]["date"].slice(0, 10);
       delete dataArray[i].date;
-      dataArray[i].dateTime = dataArray[i].dateTime.slice(0, 10);
       dataArray[i].onAgenda = dataArray[i]["on_agenda"];
       delete dataArray[i].on_agenda;
     }
     return dataArray;
   }
 
-  // Get all data from API and set states for Notes list and Agenda list
+  // Get all data from API and set states for Notes list
   async function getNotesList() {
     const res = await fetch(
       "http://localhost:5000/notes" + buildQuery(notesQuery)
@@ -74,7 +71,7 @@ function App() {
     setNotes(mappedData);
   }
 
-  // Get all data from API and set states for Notes list and Agenda list
+  // Get all data from API and set states for Agenda list
   async function getAgendaList() {
     const res = await fetch(
       "http://localhost:5000/notes" + buildQuery(agendaQuery)
