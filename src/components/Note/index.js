@@ -7,17 +7,20 @@ function Note({ idx, text, deleteLi, addToAgenda }) {
       <div id="noteHeader">
         <h4 id="title">{text.title}</h4>
       </div>
-      <div id="noteDesc">
-        <p id="description">{text.description}</p>
-      </div>
+      <div id="descPrig">
+        <div id="noteDesc">
+          <p id="description">{text.description}</p>
+        </div>
 
-      <div id="notePrig">
-        <p id="category">{text.category}</p>
-        <p id="priority">{text.priority}</p>
+        <div id="notePrig">
+          <p id="category">{text.category}</p>
+          <p id="priority">{text.priority}</p>
+        </div>
       </div>
       <div id="noteFooter">
         <div id="noteDeleteButton">
           <button
+            id="deleteBut"
             onClick={() => {
               return deleteLi(idx);
             }}
@@ -31,6 +34,7 @@ function Note({ idx, text, deleteLi, addToAgenda }) {
 
         <div id="noteAddButton">
           <button
+            id="addBut"
             onClick={() => {
               return addToAgenda(idx);
             }}

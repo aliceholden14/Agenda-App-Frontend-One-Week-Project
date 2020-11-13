@@ -134,8 +134,10 @@ function App() {
   // Create React components
   return (
     <div id="main">
-      <Form addLi={addLi} addToAgenda={addToAgenda} />
-
+      <div id="TitleForm">
+        <h1 id="agendify">Agendify</h1>
+        <Form addLi={addLi} addToAgenda={addToAgenda} />
+      </div>
       <div id="noteAgenda">
         <NoteList
           className="noteAgendaChild"
