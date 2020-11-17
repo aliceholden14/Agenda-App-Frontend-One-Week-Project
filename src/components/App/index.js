@@ -83,18 +83,17 @@ function App() {
   useEffect(() => {
     getNotesList();
     getAgendaList();
-  }, [stateChange]);
+  });
 
   // Post form data to API
   async function addLi(formEntry) {
     delete formEntry.dateTime;
     formEntry.userId = "student";
-    const postData = await fetch(`${url}/notes`, {
+    await fetch(`${url}/notes`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formEntry),
     });
-    const result = await postData.json;
     setStateChange(!stateChange);
   }
 
@@ -103,7 +102,7 @@ function App() {
     const res = await fetch(`${url}/notes/${id}`, {
       method: "delete",
     });
-    const deletedId = await res.json();
+    await res.json();
     setStateChange(!stateChange);
   }
 
@@ -114,7 +113,7 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ onAgenda: true }),
     });
-    const addedId = await res.json();
+    await res.json();
     setStateChange(!stateChange);
   }
 
@@ -125,7 +124,7 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ onAgenda: false }),
     });
-    const removedId = await res.json();
+    await res.json();
     setStateChange(!stateChange);
   }
 

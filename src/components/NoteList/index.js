@@ -19,7 +19,15 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
       category: categoryFilter,
       order: order,
     });
-  }, [searchText, categoryFilter, priorityFilter, startDate, endDate, order]);
+  }, [
+    setQuery,
+    searchText,
+    categoryFilter,
+    priorityFilter,
+    startDate,
+    endDate,
+    order,
+  ]);
 
   return (
     <div id="notesContainer">

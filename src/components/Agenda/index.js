@@ -21,6 +21,7 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
       order: agendaOrder,
     });
   }, [
+    setQuery,
     searchAgenda,
     categoryFilterAgenda,
     priorityFilterAgenda,
