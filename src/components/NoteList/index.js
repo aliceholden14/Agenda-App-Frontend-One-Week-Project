@@ -1,26 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Note from "../Note/index";
 import "../style.css";
 
 function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
-  const [searchText, setSearchText] = useState(null);
-  const [categoryFilter, setCategoryFilter] = useState(null);
-  const [priorityFilter, setPriorityFilter] = useState(null);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [order, setOrder] = useState("descending");
-
-  useEffect(() => {
-    setQuery("notes", {
-      search: searchText,
-      start: startDate,
-      end: endDate,
-      priority: priorityFilter,
-      category: categoryFilter,
-      order: order,
-    });
-  }, [searchText, categoryFilter, priorityFilter, startDate, endDate, order]);
-
   return (
     <div id="notesContainer">
       <h1>Note Stash</h1>
@@ -35,8 +17,7 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
             class="padding"
             placeholder="Search notes..."
             type="text"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => setQuery("notes", { search: e.target.value })}
           />
           <select
             style={{
@@ -47,8 +28,11 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
             class="inputPadding"
             id="category"
             name="category"
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
+            onChange={(e) =>
+              setQuery("notes", {
+                category: e.target.value === "all" ? null : e.target.value,
+              })
+            }
           >
             <option value="" disabled selected hidden>
               Choose Category...
@@ -69,8 +53,11 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
             class="inputPadding"
             id="priority"
             name="priority"
-            value={priorityFilter}
-            onChange={(e) => setPriorityFilter(e.target.value)}
+            onChange={(e) =>
+              setQuery("notes", {
+                priority: e.target.value === "all" ? null : e.target.value,
+              })
+            }
           >
             <option value="" disabled selected hidden>
               Choose Priority...
@@ -89,8 +76,7 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
             class="inputPadding"
             id="sortBy"
             name="sortBy"
-            value={order}
-            onChange={(e) => setOrder(e.target.value)}
+            onChange={(e) => setQuery("notes", { order: e.target.value })}
           >
             <option value="" disabled selected hidden>
               Sort by...
@@ -112,8 +98,7 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
           type="date"
           id="startDateInput"
           name="dateInput"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          onChange={(e) => setQuery("notes", { start: e.target.value })}
         />
         <input
           style={{
@@ -125,8 +110,7 @@ function NoteList({ notes, deleteLi, addToAgenda, setQuery }) {
           type="date"
           id="endDateInput"
           name="dateInput"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+          onChange={(e) => setQuery("agenda", { end: e.target.value })}
         />
       </div>
       <div id="noteList">

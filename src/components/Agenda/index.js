@@ -1,34 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AgendaNote from "../AgendaNote/index";
 import "../style.css";
 
 function Agenda({ agenda, deleteFromAgenda, setQuery }) {
-  const [searchAgenda, setSearchAgenda] = useState();
-  const [categoryFilterAgenda, setCategoryFilterAgenda] = useState(null);
-  const [priorityFilterAgenda, setPriorityFilterAgenda] = useState(null);
-  const [startDateAgenda, setStartDateAgenda] = useState(null);
-  const [endDateAgenda, setEndDateAgenda] = useState(null);
-  const [agendaOrder, setAgendaOrder] = useState("descending");
-
-  useEffect(() => {
-    setQuery("agenda", {
-      search: searchAgenda,
-      start: startDateAgenda,
-      end: endDateAgenda,
-      priority: priorityFilterAgenda,
-      category: categoryFilterAgenda,
-      onAgenda: true,
-      order: agendaOrder,
-    });
-  }, [
-    searchAgenda,
-    categoryFilterAgenda,
-    priorityFilterAgenda,
-    startDateAgenda,
-    endDateAgenda,
-    agendaOrder,
-  ]);
-
   return (
     <div id="agendaContainer">
       <h1>Agenda</h1>
@@ -42,8 +16,7 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
             }}
             placeholder="Search agenda..."
             type="text"
-            value={searchAgenda}
-            onChange={(e) => setSearchAgenda(e.target.value)}
+            onChange={(e) => setQuery("agenda", { search: e.target.value })}
           />
           <select
             style={{
@@ -54,8 +27,11 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
             class="inputPadding"
             id="categoryAgenda"
             name="category"
-            value={categoryFilterAgenda}
-            onChange={(e) => setCategoryFilterAgenda(e.target.value)}
+            onChange={(e) =>
+              setQuery("agenda", {
+                category: e.target.value === "all" ? null : e.target.value,
+              })
+            }
           >
             <option value="" disabled selected hidden>
               Choose Category...
@@ -76,8 +52,11 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
             class="inputPadding"
             id="priorityAgenda"
             name="priority"
-            value={priorityFilterAgenda}
-            onChange={(e) => setPriorityFilterAgenda(e.target.value)}
+            onChange={(e) =>
+              setQuery("agenda", {
+                priority: e.target.value === "all" ? null : e.target.value,
+              })
+            }
           >
             <option value="" disabled selected hidden>
               Choose Priority...
@@ -96,8 +75,7 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
             class="inputPadding"
             id="sortByAgenda"
             name="sortBy"
-            value={agendaOrder}
-            onChange={(e) => setAgendaOrder(e.target.value)}
+            onChange={(e) => setQuery("agenda", { order: e.target.value })}
           >
             <option value="" disabled selected hidden>
               Sort by...
@@ -119,8 +97,7 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
           type="date"
           id="startDateInputAgenda"
           name="dateInput"
-          value={startDateAgenda}
-          onChange={(e) => setStartDateAgenda(e.target.value)}
+          onChange={(e) => setQuery("agenda", { start: e.target.value })}
         />
         <input
           style={{
@@ -132,8 +109,7 @@ function Agenda({ agenda, deleteFromAgenda, setQuery }) {
           type="date"
           id="endDateInputAgenda"
           name="dateInput"
-          value={endDateAgenda}
-          onChange={(e) => setEndDateAgenda(e.target.value)}
+          onChange={(e) => setQuery("agenda", { end: e.target.value })}
         />
       </div>
       <div id="agendaList">

@@ -4,6 +4,8 @@ import Form from "../Form/index";
 import NoteList from "../NoteList/index";
 import Agenda from "../Agenda/index";
 
+const url = process.env.REACT_APP_BACKEND_URL || `http://localhost:5000`;
+
 function App() {
   const [notes, setNotes] = useState([]);
   const [notesQuery, setNotesQuery] = useState({
@@ -34,20 +36,13 @@ function App() {
     return query.slice(0, -1);
   }
 
-  // Get query states from list components
-  function setQuery(list, queryObject) {
-    for (const key in queryObject) {
-      if (queryObject[key] === "all") {
-        queryObject[key] = null;
-      }
-    }
+  // Get query update from list components and update states
+  function setQuery(list, queryUpdate) {
     if (list === "notes") {
-      setNotesQuery(queryObject);
+      setNotesQuery({ ...notesQuery, ...queryUpdate });
     } else if (list === "agenda") {
-      setAgendaQuery(queryObject);
+      setAgendaQuery({ ...agendaQuery, ...queryUpdate });
     }
-    //setNotesQuery(queryObject);
-    setStateChange(!stateChange);
   }
 
   // Map received API data into a format suitable for React components
@@ -61,73 +56,74 @@ function App() {
     return dataArray;
   }
 
-  // Get all data from API and set states for Notes list
-  async function getNotesList() {
-    const res = await fetch(
-      "http://localhost:5000/notes" + buildQuery(notesQuery)
-    );
-    const dataArray = await res.json();
-    const mappedData = mapApiData(dataArray.data.rows);
-    setNotes(mappedData);
-  }
-
-  // Get all data from API and set states for Agenda list
-  async function getAgendaList() {
-    const res = await fetch(
-      "http://localhost:5000/notes" + buildQuery(agendaQuery)
-    );
-    const dataArray = await res.json();
-    const mappedData = mapApiData(dataArray.data.rows);
-    setAgenda(mappedData);
-  }
-
   // useEffect triggered everytime state changes, a bit hacky right now as stateChange is just a boolean that is toggled
   useEffect(() => {
+    // Get all data from API and set states for Notes list
+    async function getNotesList() {
+      const res = await fetch(`${url}/notes${buildQuery(notesQuery)}`);
+      const dataArray = await res.json();
+      const mappedData = mapApiData(dataArray.data.rows);
+      setNotes(mappedData);
+    }
+
+    // Get all data from API and set states for Agenda list
+    async function getAgendaList() {
+      const res = await fetch(`${url}/notes${buildQuery(agendaQuery)}`);
+      const dataArray = await res.json();
+      const mappedData = mapApiData(dataArray.data.rows);
+      setAgenda(mappedData);
+    }
+
+    // Call the functions when useEffect is triggered
     getNotesList();
     getAgendaList();
-  }, [stateChange]);
+  }, [stateChange, notesQuery, agendaQuery]);
 
   // Post form data to API
   async function addLi(formEntry) {
     delete formEntry.dateTime;
     formEntry.userId = "student";
-    const postData = await fetch("http://localhost:5000/notes", {
+    const postData = await fetch(`${url}/notes`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formEntry),
     });
     const result = await postData.json;
+    console.log(result);
     setStateChange(!stateChange);
   }
 
   // Delete by ID from API
   async function deleteLi(id) {
-    const res = await fetch(`http://localhost:5000/notes/${id}`, {
+    const res = await fetch(`${url}/notes/${id}`, {
       method: "delete",
     });
     const deletedId = await res.json();
+    console.log(deletedId);
     setStateChange(!stateChange);
   }
 
   // Set onAgenda to true for note by ID
   async function addToAgenda(id) {
-    const res = await fetch(`http://localhost:5000/notes/${id}`, {
+    const res = await fetch(`${url}/notes/${id}`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ onAgenda: true }),
     });
     const addedId = await res.json();
+    console.log(addedId);
     setStateChange(!stateChange);
   }
 
   // Set onAgenda to false for note by ID
   async function deleteFromAgenda(id) {
-    const res = await fetch(`http://localhost:5000/notes/${id}`, {
+    const res = await fetch(`${url}/notes/${id}`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ onAgenda: false }),
     });
     const removedId = await res.json();
+    console.log(removedId);
     setStateChange(!stateChange);
   }
 
